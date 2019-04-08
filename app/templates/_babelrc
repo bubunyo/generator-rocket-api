@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }]
+  ],
+  "plugins": ["transform-object-rest-spread", "transform-es2015-modules-commonjs"],
+  "ignore": [
+    "src/db/migrations/",
+    "src/db/seeders/",
+    "src/db/.eslintrc",
+    "src/db/*.json"
+  ]
+}

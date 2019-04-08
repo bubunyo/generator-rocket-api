@@ -1,0 +1,76 @@
+{
+  "name": "<%= appname %>",
+  "version": "0.0.0",
+  "description": "Express Api Boilerplate",
+  "main": "dist/server.js",
+  "repository": "",
+  "author": "<%= author %>",
+  "license": "MIT",
+  "scripts": {
+    "start": "<%= pm %> run compile && node dist/app.js",
+    "predev": "rimraf ./dist/",
+    "dev": "cross-env NODE_ENV='development' nodemon --watch src --exec <%= pm %> start",
+    "test": "cross-env NODE_ENV='test' jest",
+    "test:coverage": "cross-env NODE_ENV='test' jest --no-cache --watch --coverage",
+    "compile": "babel --out-dir dist src --source-maps --ignore '**/*.test.js'",
+    "prepublish": "<%= pm %> run compile",
+    "postinstall": "<%= pm %> run compile",
+    "lint": "eslint src",
+    "migrate:generate": "<%= pm %> run sequelize migration:generate --name",
+    "sequelize-test": "cross-env NODE_ENV='test' node_modules/.bin/sequelize",
+    "sequelize-dev": "cross-env NODE_ENV='development' node_modules/.bin/sequelize",
+    "sequelize": "node_modules/.bin/sequelize"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "1.15.0",
+    "cors": "2.7.1",
+    "cross-env": "^5.1.3",
+    "errorhandler": "1.4.3",
+    "express": "4.13.4",
+    "express-jwt": "3.3.0",
+    "express-validation": "^1.0.2",
+    "http-status": "^1.0.1",
+    "joi": "^10.6.0",
+    "jsonwebtoken": "7.1.9",
+    "meteor-random": "^0.0.3",
+    "method-override": "^2.3.9",
+    "methods": "1.1.2",
+    "moment": "^2.20.1",
+    "morgan": "1.7.0",
+    "passport": "0.3.2",
+    "passport-jwt": "^3.0.1",<% if(db == 'postgres'){ %>
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",<% } %><% if(db == 'mysql'){ %>
+    "mysql2": "^1.6.5",<% } %><% if(db == 'mariadb'){ %>
+    "mariadb": "^2.0.3",<% } %><% if(db == 'sqlite3'){ %>
+    "sqlite3": "^4.0.6",<% } %><% if(db == 'tedious'){ %>
+    "tedious": "^6.1.0",<% } %>
+    "sequelize": "^4.37.6",
+    "sequelize-cli": "^4.0.0",
+    "source-map-support": "^0.4.15",
+    "validator": "^9.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-es5": "^0.5.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.1.0",
+    "jest": "^22.0.3",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1",
+    "supertest": "^3.0.0",
+    "supertest-as-promised": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
