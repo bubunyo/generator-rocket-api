@@ -1,6 +1,6 @@
 {
   "name": "generator-rocket-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yoeman generator for Rocket express api boilerplate",
   "main": "index.js",
   "scripts": {
