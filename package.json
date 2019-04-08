@@ -10,7 +10,7 @@
     "yeoman-generator"
   ],
   "author": "Bubunyo Nyavor",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^3.2.0"
   },
