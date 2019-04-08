@@ -4,13 +4,12 @@ import User from './user.model';
 
 
 export const getUser = async (req, res) => {
-  try {
-    const user = await User.findById(id);
-    res.send(user);
-  } catch (ex) {
-    console.log(ex);
+  const user = await User.findById(id);
+  if (!user) {
     res.sendStatus(HTTPStatus.NOT_FOUND);
+    return;
   }
+  res.send(user);
 };
 
 

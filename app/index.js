@@ -6,7 +6,7 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.log(`Creating new Express-Api project: ${this.appname}`);
+    this.log(`Creating new Rocket-Api project: ${this.appname}`);
   }
 
   _getDialect(dbms) {

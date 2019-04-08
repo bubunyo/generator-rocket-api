@@ -10,7 +10,7 @@
     "start": "<%= pm %> run compile && node dist/app.js",
     "predev": "rimraf ./dist/",
     "dev": "cross-env NODE_ENV='development' nodemon --watch src --exec <%= pm %> start",
-    "test": "cross-env NODE_ENV='test' jest",
+    "test": "cross-env NODE_ENV='test' jest -i",
     "test:coverage": "cross-env NODE_ENV='test' jest --no-cache --watch --coverage",
     "compile": "babel --out-dir dist src --source-maps --ignore '**/*.test.js'",
     "prepublish": "<%= pm %> run compile",
