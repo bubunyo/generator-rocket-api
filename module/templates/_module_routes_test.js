@@ -17,6 +17,6 @@ describe('<%= module %>:Routes', async () => {
     const res = await request(server).get('/api/<%= table %>/');
 
     expect(res.statusCode).toBe(HTTPStatus.OK);
-    expect(res.body.id).toBe(<%= rpc %>.id);
+    expect(res.body.id).toBe(<%= table %>.id);
   });
 });

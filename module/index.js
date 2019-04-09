@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const recast = require('recast');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -15,7 +16,6 @@ module.exports = class extends Generator {
   writing() {
     const table = this.options.module.toLowerCase();
     const module = table.charAt(0).toUpperCase() + table.substr(1);
-
 
     const d = new Date();
     const y = d.getFullYear();
@@ -68,7 +68,36 @@ module.exports = class extends Generator {
     );
   }
 
-  updateFiles() {
-    this.log('>>> log the system');
+  append() {
+    const table = this.options.module.toLowerCase();
+    const module = table.charAt(0).toUpperCase() + table.substr(1);
+
+
+    this.destinationRoot();
+
+    const apiRouterPath = 'src/modules/api/api.routes.js';
+
+    const text = this.fs.read(apiRouterPath);
+    const ast = recast.parse(text);
+
+    let lastImportLine = 0;
+    let lastApiRouterine = 0;
+
+    for (let i = 0; i < ast.program.body.length; i += 1) {
+      const item = ast.program.body[i];
+      if (item.type === 'ImportDeclaration') { lastImportLine = i; }
+      if (item.type === 'ExpressionStatement') { lastApiRouterine = i; }
+    }
+
+
+    const importItem = recast.parse(`import ${module}Router from '../${table}/${table}.routes'`);
+    ast.program.body.splice(lastImportLine + 1, 0, importItem.program.body[0]);
+
+    const routerItem = recast.parse(`apiRouter.use('/${table}', ${module}Router)`);
+    ast.program.body.splice(lastApiRouterine + 2, 0, routerItem.program.body[0]);
+
+    const output = recast.prettyPrint(ast, { tabWidth: 2 }).code;
+
+    this.fs.write(apiRouterPath, output.replace(/"/g, "'"));
   }
 };
