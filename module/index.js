@@ -68,7 +68,7 @@ module.exports = class extends Generator {
     );
   }
 
-  append() {
+  appendInApiRouter() {
     const table = this.options.module.toLowerCase();
     const module = table.charAt(0).toUpperCase() + table.substr(1);
 
@@ -99,5 +99,47 @@ module.exports = class extends Generator {
     const output = recast.prettyPrint(ast, { tabWidth: 2 }).code;
 
     this.fs.write(apiRouterPath, output.replace(/"/g, "'"));
+  }
+
+  _appendInTestHelperNuke() {
+    const table = this.options.module.toLowerCase();
+    const module = table.charAt(0).toUpperCase() + table.substr(1);
+
+    const testHelperPath = 'src/helpers/test_helpers.js';
+
+    const text = this.fs.read(testHelperPath);
+    const ast = recast.parse(text);
+
+    // let lastImportLine = 0;
+    // let lastApiRouterine = 0;
+
+    for (let i = 0; i < ast.program.body.length; i += 1) {
+      const item = ast.program.body[i];
+      if (item.type === 'ExportNamedDeclaration' && item.declaration.declarations[0].id.name === 'nuke') {
+        const n = item.declaration.declarations[0].init.body.body;
+        const nItem = recast.parse(`await ${module}.destroy({ where: {} });`);
+
+        n.push(nItem.program.body);
+
+        this.log(n[0]);
+        this.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
+        this.log(n[1]);
+      }
+    }
+    //   if (item.type === 'ExpressionStatement') { lastApiRouterine = i; }
+
+
+    // const importItem = recast.parse(`import ${module}Router from '../${table}/${table}.routes'`);
+    // ast.program.body.splice(lastImportLine + 1, 0, importItem.program.body[0]);
+
+    // const routerItem = recast.parse(`apiRouter.use('/${table}', ${module}Router)`);
+    // ast.program.body.splice(lastApiRouterine + 2, 0, routerItem.program.body[0]);
+
+    const output = recast.prettyPrint(ast, { tabWidth: 2 }).code;
+
+    // this.fs.write(apiRouterPath, output.replace(/"/g, "'"));
+
+    // this.log(ast.program.body);
+    // this.log(output);
   }
 };
