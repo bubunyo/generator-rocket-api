@@ -87,7 +87,7 @@ module.exports = class extends Generator {
     }
     this.fs.copyTpl(
       this.templatePath('./_user_migration.js'),
-      this.destinationPath(`./src/db/migration/${y}${f(m + 1)}${f(dd)}${f(h)}${f(mm)}${f(s)}-user_model.js`),
+      this.destinationPath(`./src/db/migrations/${y}${f(m + 1)}${f(dd)}${f(h)}${f(mm)}${f(s)}-user_model.js`),
     );
     this.fs.copyTpl(
       this.templatePath('./_user_module'),

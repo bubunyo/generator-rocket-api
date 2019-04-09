@@ -29,7 +29,7 @@ module.exports = class extends Generator {
     }
     this.fs.copyTpl(
       this.templatePath('./_module_migration.js'),
-        this.destinationPath(`./src/db/migration/${y}${f(m + 1)}${f(dd)}${f(h)}${f(mm)}${f(s)}-${table}_model.js`),
+        this.destinationPath(`./src/db/migrations/${y}${f(m + 1)}${f(dd)}${f(h)}${f(mm)}${f(s)}-${table}_model.js`),
         { module, table },
     );
 
@@ -117,13 +117,13 @@ module.exports = class extends Generator {
       const item = ast.program.body[i];
       if (item.type === 'ExportNamedDeclaration' && item.declaration.declarations[0].id.name === 'nuke') {
         const n = item.declaration.declarations[0].init.body.body;
-        const nItem = recast.parse(`await ${module}.destroy({ where: {} });`);
+        const nItem = recast.parse(`// await ${module}.destroy({ where: {} });`);
 
         n.push(nItem.program.body);
 
-        this.log(n[0]);
-        this.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
-        this.log(n[1]);
+        // this.log(n[0]);
+        // this.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
+        // this.log(n[1]);
       }
     }
     //   if (item.type === 'ExpressionStatement') { lastApiRouterine = i; }
@@ -140,6 +140,6 @@ module.exports = class extends Generator {
     // this.fs.write(apiRouterPath, output.replace(/"/g, "'"));
 
     // this.log(ast.program.body);
-    // this.log(output);
+    this.log(output);
   }
 };
