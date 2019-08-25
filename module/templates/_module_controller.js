@@ -2,7 +2,7 @@ import HTTPStatus from 'http-status';
 import <%= module %> from './<%= table %>.model';
 
 export const get<%= module %> = async (req, res) => {
-  const id = req.id;
+  const id = req.params.id;
 
   const <%= table %> = await <%= module %>.findById(id);
   if (!<%= table %>) {

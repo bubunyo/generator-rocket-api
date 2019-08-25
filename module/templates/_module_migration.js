@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('<%= table %>', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('<%= table %>s', {
     id: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
 
     // refer to http://docs.sequelizejs.com/manual/migrations.html#migration-skeleton

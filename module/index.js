@@ -93,7 +93,7 @@ module.exports = class extends Generator {
     const importItem = recast.parse(`import ${module}Router from '../${table}/${table}.routes'`);
     ast.program.body.splice(lastImportLine + 1, 0, importItem.program.body[0]);
 
-    const routerItem = recast.parse(`apiRouter.use('/${table}', ${module}Router)`);
+    const routerItem = recast.parse(`apiRouter.use('/${table}s', ${module}Router)`);
     ast.program.body.splice(lastApiRouterine + 2, 0, routerItem.program.body[0]);
 
     const output = recast.prettyPrint(ast, { tabWidth: 2 }).code;
@@ -117,9 +117,13 @@ module.exports = class extends Generator {
       const item = ast.program.body[i];
       if (item.type === 'ExportNamedDeclaration' && item.declaration.declarations[0].id.name === 'nuke') {
         const n = item.declaration.declarations[0].init.body.body;
-        const nItem = recast.parse(`// await ${module}.destroy({ where: {} });`);
+        const nItem = recast.parse(`(async () => await ${module}.destroy({ where: {} }))();`);
 
-        n.push(nItem.program.body);
+        const output = recast.prettyPrint(nItem, { tabWidth: 2 }).code;
+
+        this.log(output);
+
+        // n.push(nItem.program.body);
 
         // this.log(n[0]);
         // this.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
