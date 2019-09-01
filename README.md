@@ -100,13 +100,13 @@ The module folder contains a `api.routes.js` file which serves as a mini gateway
 
 ### Module Structure 
 Modules contain a
--  <modulename>.model.js - the Sequelize model definition. For more info on the module definition look [here]()
--  <modulename>.controller.js - the business login of you app as exported functions.
--  <modulename>.routes.js - the gateway for you particular module.
--  <modulename>.validation.js - Joi validation schema.
--  test/<modulename>.routes.test.js - Integration test for your business logic with entry point in your routes.
--  test/<modulename>.controller.test.js - Unit test for your business logic.
--  test/<modulename>.model.test.js - Unit test for your model definition expecially if they have any additional functions.
+-  `<modulename>.model.js` - the Sequelize model definition. For more info on the module definition look [here](https://sequelize.org/master/manual/models-definition.html)
+-  `<modulename>.controller.js` - the business login of you app as exported functions.
+-  `<modulename>.routes.js` - the gateway for you particular module.
+-  `<modulename>.validation.js` - Joi validation schema.
+-  `test/<modulename>.routes.test.js` - Integration test for your business logic with entry point in your routes.
+-  `test/<modulename>.controller.test.js` - Unit test for your business logic.
+-  `test/<modulename>.model.test.js` - Unit test for your model definition expecially if they have any additional functions.
 
 You are free to create and add new module files to your module folder. Please remember to keep the naming conventions so that people who look at your code can easily know what to find 
 
