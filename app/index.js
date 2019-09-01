@@ -154,8 +154,100 @@ module.exports = class extends Generator {
     );
   }
   install() {
+
+        const deps = [
+            'axios',
+            'babel-cli',
+            'eslint',
+            'babel-plugin-transform-object-rest-spread',
+            'babel-preset-env',
+            'bcrypt-nodejs',
+            'body-parser',
+            'cors',
+            'cross-env',
+            'errorhandler',
+            'express',
+            'express-jwt',
+            'express-validation',
+            'http-status',
+            'joi',
+            'jsonwebtoken',
+            'meteor-random',
+            'method-override',
+            'methods',
+            'moment',
+            'morgan',
+            'passport',
+            'passport-jwt',
+            'sequelize',
+            'sequelize-cli',
+            'source-map-support',
+            'validator',
+        ]
+
+    if (this.config.get('dbms') === 'postgres') {
+        deps = [
+            ...deps,
+            'pg',
+            'pg-hstore',
+        ]
+    }
+    if (this.config.get('dbms') === 'mysql') {
+        deps = [
+            ...deps,
+            'mysql2',
+        ]
+    }
+    if (this.config.get('dbms') === 'mariadb') {
+        deps = [
+            ...deps,
+            'mariadb',
+        ]
+    }
+    if (this.config.get('dbms') === 'mariadb') {
+        deps = [
+            ...deps,
+            'sqlite3',
+        ]
+    }
+    if (this.config.get('dbms') === 'tedious') {
+        deps = [
+            ...deps,
+            'tedious',
+        ]
+    }
+
+
+
     if (this.config.get('pm') === 'yarn') {
-      this.yarnInstall();
-    } else { this.npmInstall(); }
+        this.yarnInstall(deps);
+
+    } else {
+        this.npmInstall(deps);
+    }
+  }
+
+  installDevDeps() {
+
+        const devDeps = [
+            'babel-core',
+            'babel-jest',
+            'eslint',
+            'eslint-config-airbnb',
+            'eslint-config-es5',
+            'eslint-plugin-import',
+            'eslint-plugin-jsx-ally',
+            'jest',
+            'nodemon',
+            'rimraf',
+            'supertest',
+        ]
+
+
+    if (this.config.get('pm') === 'yarn') {
+        this.yarnInstall(devDeps, { 'dev': true })
+    } else {
+        this.npmInstall(devDeps, { 'dev': true });
+    }
   }
 };
