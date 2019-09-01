@@ -123,7 +123,7 @@ yo rocket-api: <modulename>
 ```
 yarn migrate:generate <migration_title>
 ```
-This will create a sequelize migration document in `src/db/migrations` of the format `<data_timestam>_migration_name.js`. You can refer to the [Sequelize Migrations Doc]() on how to create migrations.
+This will create a sequelize migration document in `src/db/migrations` of the format `<data_timestam>_migration_name.js`. You can refer to the [Sequelize Migrations Doc](https://sequelize.org/master/manual/migrations.html) on how to create migrations, Seeds, etc.
 
 ### Run a migrations
 
