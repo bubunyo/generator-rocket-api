@@ -39,13 +39,6 @@ $ npm install -g generator-rocket-api
 
 You are now ready to get started with the Rocket Api generator. The generator will help you create a scaffold for your node api.
 
-## Generators
-
-Available generators:
-
-* [meanjs](#application-generator)
-
-**Note: Sub-generators are to be run from the root directory of your app. The main generator will create your project folder for you.**
 
 ## Application Generator
 
