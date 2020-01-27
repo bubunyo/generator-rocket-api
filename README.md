@@ -2,17 +2,17 @@
 
 ## Overview
 After building tons of Node JS api, a pattern began to emerge. There were batteries I immediately 
-added to all my projects and there was a pattern to how I added new features to my project. For all my project,
-These we my requirements. 
+added to all my projects and there was a pattern to how I added new features to my projects. For all my projects,
+hese we my requirements. 
 
-- Have and easy-to-use ORM
-- Have a migrations strategy.
+- Easy-to-use ORM
+- A simple migrations strategy.
 - Easy to Setup and Use Validators
-- Modular folder structure.
-- Integration tests for all my code. 
+- Modular folder structures.
+- Integration and unit tests for all my modules. 
 - Some initial batteries for all new modules.
 
-What I came up with is a generator project onto for creating modular testable apps. 
+What I came up with is a generator project for creating modular testable node backend apps. 
 
 Batteries include 
 - [Sequelize](https://sequelize.org/master/) as an ORM and for migration.
@@ -95,7 +95,7 @@ The initial folder structure of your api application looks like this
 ## The Concept of Modules. 
 
 Think of modules as a container for all the logic that deals with a particular object.
-Eg. For an E-commerce platform, Products will be a module. The model definitions, routes, and business logic and tests, will be contained within the module folder.
+Eg. For an E-commerce platform, Products will be a module. The code base that makes up the model definitions, routes, business logic and tests will be contained within the module folder.
 The module folder contains a `api.routes.js` file which serves as a mini gateway into all your module files. 
 
 ### Module Structure 
